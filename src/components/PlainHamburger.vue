@@ -2,7 +2,7 @@
   <button
     type="button"
     class="hamburger"
-    :class="[hamburgerModifierClass, { 'hamburger--active': isActive, 'hamburger--rounded': rounded}]"
+    :class="[hamburgerModifierClass, { 'hamburger--active': active, 'hamburger--rounded': rounded}]"
     @click.prevent="toggle"
   >
     <span class="hamburger-box" :style="buttonStyle">
@@ -23,27 +23,19 @@ export default {
 
   data () {
     return {
-      isActive: false,
       buttonStyle: null
     }
   },
   methods: {
     toggle () {
-      this.isActive = !this.isActive
-      this.$emit('toggle', this.isActive)
-    }
-  },
-  watch: {
-    active (newValue, oldValue) {
-      if (newValue !== oldValue) {
-        this.toggle()
-      }
+      this.active = !this.active
+      this.$emit('toggle', this.active)
     }
   },
   computed: {
     layerStyle () {
       return {
-        'background-color': this.isActive ? this.activeColor : this.color
+        'background-color': this.active ? this.activeColor : this.color
       }
     },
     hamburgerModifierClass () {
@@ -53,8 +45,6 @@ export default {
     }
   },
   created () {
-    this.isActive = this.active
-
     switch (this.size) {
       case 'xs':
         this.buttonStyle = {
