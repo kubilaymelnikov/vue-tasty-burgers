@@ -28,8 +28,7 @@ export default {
   },
   methods: {
     toggle () {
-      this.active = !this.active
-      this.$emit('toggle', this.active)
+      this.$emit('toggle')
     }
   },
   computed: {
