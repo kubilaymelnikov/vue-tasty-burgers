@@ -2,7 +2,10 @@
   <button
     type="button"
     class="hamburger"
-    :class="[hamburgerModifierClass, { 'hamburger--active': active, 'hamburger--rounded': rounded}]"
+    :class="[
+      hamburgerModifierClass,
+      { 'hamburger--active': active, 'hamburger--rounded': rounded },
+    ]"
     @click.prevent="toggle"
   >
     <span class="hamburger-box" :style="buttonStyle">
@@ -15,75 +18,31 @@
 </template>
 
 <script>
-import PropsMixins from '../mixins/props-mixin.js'
+import PropsMixins from "../mixins/props-mixin.js";
 
 export default {
   inheritAttrs: false,
   mixins: [PropsMixins],
-
-  data () {
-    return {
-      buttonStyle: null
-    }
-  },
   methods: {
-    toggle () {
-      this.$emit('toggle')
-    }
+    toggle() {
+      this.$emit("toggle");
+    },
   },
   computed: {
-    layerStyle () {
+    layerStyle() {
       return {
-        'background-color': this.active ? this.activeColor : this.color
-      }
+        "background-color": this.active ? this.activeColor : this.color,
+      };
     },
-    hamburgerModifierClass () {
-      return `hamburger--${this.type}${this.reversed ? '-r' : ''}`
-        // prevent double '-r-r' if both type suffix and 'reversed' prop are used
-        .replace(/-r-r$/, '-r')
-    }
+    hamburgerModifierClass() {
+      return (
+        `hamburger--${this.type}${this.reversed ? "-r" : ""}`
+          // prevent double '-r-r' if both type suffix and 'reversed' prop are used
+          .replace(/-r-r$/, "-r")
+      );
+    },
   },
-  created () {
-    switch (this.size) {
-      case 'xs':
-        this.buttonStyle = {
-          transform: 'scale(0.5)',
-          width: '20px',
-          height: '13px'
-        }
-        break
-      case 's':
-        this.buttonStyle = {
-          transform: 'scale(0.7)',
-          width: '29px',
-          height: '18px'
-        }
-        break
-      case 'm':
-        this.buttonStyle = {
-          transform: 'scale(0.9)',
-          width: '36px',
-          height: '23px'
-        }
-        break
-      case 'l':
-        this.buttonStyle = {
-          transform: 'scale(1.1)',
-          width: '44px',
-          height: '27px'
-        }
-        break
-      case 'xl':
-        this.buttonStyle = {
-          transform: 'scale(1.3)',
-          width: '52px',
-          height: '32px'
-        }
-        break
-    }
-  }
-
-}
+};
 </script>
 
 <style lang="scss">

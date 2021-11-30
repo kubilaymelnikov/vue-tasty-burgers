@@ -2,34 +2,35 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'boring'
+      default: "boring",
     },
     active: {
       type: Boolean,
-      default: false
+      default: false,
     },
     color: {
       type: String,
-      default: '#000000'
+      default: "#000000",
     },
     activeColor: {
       type: String,
-      default: null
+      default: null,
     },
-    size: {
-      type: String,
-      validator: function (value) {
-        return ['xs', 's', 'm', 'l', 'xl'].indexOf(value) !== -1
-      },
-      default: 'm'
+    buttonStyle: {
+      type: Object,
+      default: () => ({
+        transform: "scale(0.9)",
+        width: "36px",
+        height: "23px",
+      }),
     },
     reversed: {
       type: Boolean,
-      default: false
+      default: false,
     },
     rounded: {
       type: Boolean,
-      default: true
-    }
-  }
-}
+      default: true,
+    },
+  },
+};
